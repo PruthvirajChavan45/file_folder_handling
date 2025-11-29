@@ -15,6 +15,13 @@ def create_folder():
         print(f"Error: {err}")
 
 
+def read_file_folder():
+    p = Path(".")          # Current folder
+    items = list(p.rglob("*"))
+    for i, v in enumerate(items): 
+         print(f"{i + 1} : {v}")
+
+
 # -------------
 # MAIN MENU
 # -------------
@@ -33,3 +40,6 @@ except:
 
 if choice == 1:
         create_folder()
+
+elif choice == 2:
+        read_file_folder()
