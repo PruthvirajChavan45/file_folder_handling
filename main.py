@@ -135,6 +135,55 @@ def read_file():
         print(f"Error: {err}")
 
 
+def update_file():
+    try:
+        read_file_folder()
+        name = input("Enter file name: ")
+        p = Path(name).resolve()
+
+        if not is_inside_project(p):
+            print("Cannot update file outside project")
+            return
+
+        if p.exists() and p.is_file():
+            print("1. Rename file")
+            print("2. Append content")
+            print("3. Overwrite content")
+
+            choice = int(input("Enter choice: "))
+
+            if choice == 1:
+                new_name = input("Enter new name with extension: ")
+                new_p = Path(new_name)
+
+                if new_p.exists():
+                    print("File already exists with this name")
+                else:
+                    p.rename(new_p)
+                    print("File renamed")
+
+            elif choice == 2:
+                with open(p, "a") as fs:
+                    data = input("Enter text to append: ")
+                    fs.write(" " + data)
+                print("Data appended")
+
+            elif choice == 3:
+                with open(p, "w") as fs:
+                    data = input("Enter new content: ")
+                    fs.write(data)
+                print("File overwritten")
+
+            else:
+                print("Invalid choice")
+
+        else:
+            print("File not found")
+
+    except Exception as err:
+        print(f"Error: {err}")
+
+
 # -------------
 # MAIN MENU
 # -------------
@@ -167,4 +216,5 @@ elif choice == 5:
     create_file()
 elif choice == 6:
     read_file()
-    
+elif choice == 7:
+    update_file()
