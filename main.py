@@ -87,6 +87,33 @@ def delete_folder():
         print(f"Error: {err}")
 
 
+# ------------------
+# File Functions
+# ------------------
+
+def create_file():
+    try:
+        read_file_folder()
+        name = input("Enter file name: ")
+        p = Path(name).resolve()
+
+        if not is_inside_project(p):
+            print("You cannot create files outside project!")
+            return
+
+        if p.exists():
+            print("File already exists")
+            return
+
+        with open(p, "w") as fs:
+            data = input("Write what you want in this file: ")
+            fs.write(data)
+
+        print("File created successfully")
+    except Exception as err:
+        print(f"Error: {err}") 
+
+
 # -------------
 # MAIN MENU
 # -------------
@@ -96,6 +123,10 @@ print("1. Create folder")
 print("2. Read files/folders")
 print("3. Update folder")
 print("4. Delete folder")
+print("5. Create file")
+print("6. Read file")
+print("7. Update file")
+print("8. Delete file")
 
 try:
     choice = int(input("Enter your choice: "))
@@ -104,10 +135,13 @@ except:
 
 
 if choice == 1:
-        create_folder()
+    create_folder()
 elif choice == 2:
-        read_file_folder()
+    read_file_folder()
 elif choice == 3:
-        update_folder()
+    update_folder()
 elif choice == 4:
-     delete_folder()
+    delete_folder()
+elif choice == 5:
+    create_file()
+    
