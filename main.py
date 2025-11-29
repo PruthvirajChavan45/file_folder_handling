@@ -114,6 +114,27 @@ def create_file():
         print(f"Error: {err}") 
 
 
+def read_file():
+    try:
+        read_file_folder()
+        name = input("Enter file name: ")
+        p = Path(name).resolve()
+
+        if not is_inside_project(p):
+            print("Cannot read files outside project")
+            return
+
+        if p.exists() and p.is_file():
+            with open(p, "r") as fs:
+                print("File content:")
+                print(fs.read())
+        else:
+            print("File not found")
+
+    except Exception as err:
+        print(f"Error: {err}")
+
+
 # -------------
 # MAIN MENU
 # -------------
@@ -144,4 +165,6 @@ elif choice == 4:
     delete_folder()
 elif choice == 5:
     create_file()
+elif choice == 6:
+    read_file()
     
