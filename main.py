@@ -218,26 +218,32 @@ print("5. Create file")
 print("6. Read file")
 print("7. Update file")
 print("8. Delete file")
+print("0: Exit")
 
 try:
     choice = int(input("Enter your choice: "))
 except:
     print("Invalid input! Please enter a number.")
 
-
-if choice == 1:
-    create_folder()
-elif choice == 2:
-    read_file_folder()
-elif choice == 3:
-    update_folder()
-elif choice == 4:
-    delete_folder()
-elif choice == 5:
-    create_file()
-elif choice == 6:
-    read_file()
-elif choice == 7:
-    update_file()
-elif choice == 8:
-    delete_file()
+while True:
+    if choice == 1:
+        create_folder()
+    elif choice == 2:
+        read_file_folder()
+    elif choice == 3:
+        update_folder()
+    elif choice == 4:
+        delete_folder()
+    elif choice == 5:
+        create_file()
+    elif choice == 6:
+        read_file()
+    elif choice == 7:
+        update_file()
+    elif choice == 8:
+        delete_file()
+    elif choice == 0:
+        print("Exiting...")
+        break
+    else:
+        print("Invalid choice")
