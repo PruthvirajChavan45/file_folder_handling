@@ -2,6 +2,20 @@ from pathlib import Path
 import os
 
 # ------------------
+# SAFETY: Delete only INSIDE project folder
+# ------------------
+
+PROJECT_ROOT = Path.cwd().resolve()   # Current project folder
+
+def is_inside_project(path: Path):
+    """Check if the path is inside project directory."""
+    try:
+        return str(path.resolve()).startswith(str(PROJECT_ROOT))
+    except Exception:
+        return False
+
+
+# ------------------
 # Folder Functions
 # ------------------
 
@@ -20,6 +34,29 @@ def read_file_folder():
     items = list(p.rglob("*"))
     for i, v in enumerate(items): 
          print(f"{i + 1} : {v}")
+
+
+def update_folder():
+    try:
+        read_file_folder()
+        old_name = input("Which folder do you want to rename? ")
+        p = Path(old_name).resolve()
+
+        if not is_inside_project(p):
+            print("You cannot rename folder outside this project.")
+            return
+
+        if p.exists() and p.is_dir():
+            new_name = input("Enter new folder name: ")
+            new_p = Path(new_name)
+            p.rename(new_p)
+            print("Folder renamed successfully")
+        else:
+            print("Folder not found")
+
+    except Exception as err:
+        print(f"Error: {err}")
+
 
 
 # -------------
@@ -43,3 +80,6 @@ if choice == 1:
 
 elif choice == 2:
         read_file_folder()
+
+elif choice == 3:
+        update_folder()
