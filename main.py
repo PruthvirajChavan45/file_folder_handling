@@ -58,6 +58,34 @@ def update_folder():
         print(f"Error: {err}")
 
 
+def delete_folder():
+    try:
+        read_file_folder()
+        name = input("Which folder do you want to delete? ")
+        p = Path(name).resolve()
+
+        # SAFETY CHECK
+        if not is_inside_project(p):
+            print("You cannot delete folders outside this project!")
+            return
+
+        if not p.exists():
+            print("Folder does not exist")
+            return
+
+        if not p.is_dir():
+            print("This is not a folder")
+            return
+
+        print(f"Deleting folder: {p}")
+        command = f'rmdir /s /q "{p}"'    # force delete inside project
+        os.system(command)
+
+        print("Folder deleted successfully")
+
+    except Exception as err:
+        print(f"Error: {err}")
+
 
 # -------------
 # MAIN MENU
@@ -77,9 +105,9 @@ except:
 
 if choice == 1:
         create_folder()
-
 elif choice == 2:
         read_file_folder()
-
 elif choice == 3:
         update_folder()
+elif choice == 4:
+     delete_folder()
