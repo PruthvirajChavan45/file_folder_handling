@@ -184,6 +184,27 @@ def update_file():
         print(f"Error: {err}")
 
 
+def delete_file():
+    try:
+        read_file_folder()
+        name = input("Enter file name: ")
+        p = Path(name).resolve()
+
+        if not is_inside_project(p):
+            print("Cannot delete files outside project")
+            return
+
+        if p.exists() and p.is_file():
+            p.unlink()
+            print("File deleted")
+
+        else:
+            print("File not found")
+
+    except Exception as err:
+        print(f"Error: {err}")
+
+
 # -------------
 # MAIN MENU
 # -------------
@@ -218,3 +239,5 @@ elif choice == 6:
     read_file()
 elif choice == 7:
     update_file()
+elif choice == 8:
+    delete_file()
