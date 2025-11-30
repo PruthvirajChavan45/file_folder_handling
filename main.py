@@ -209,23 +209,23 @@ def delete_file():
 # MAIN MENU
 # -------------
 
-print("\nOptions:")
-print("1. Create folder")
-print("2. Read files/folders")
-print("3. Update folder")
-print("4. Delete folder")
-print("5. Create file")
-print("6. Read file")
-print("7. Update file")
-print("8. Delete file")
-print("0: Exit")
-
-try:
-    choice = int(input("Enter your choice: "))
-except:
-    print("Invalid input! Please enter a number.")
-
 while True:
+    print("\nOptions:")
+    print("1. Create folder")
+    print("2. Read files/folders")
+    print("3. Update folder")
+    print("4. Delete folder")
+    print("5. Create file")
+    print("6. Read file")
+    print("7. Update file")
+    print("8. Delete file")
+    print("0: Exit")
+
+    try:
+        choice = int(input("Enter your choice: "))
+    except:
+        print("Invalid input! Please enter a number.")
+
     if choice == 1:
         create_folder()
     elif choice == 2:
